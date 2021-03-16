@@ -89,7 +89,7 @@ function App() {
             <li>serverless</li>
             <li>figma</li>
           </ul>
-          <span>@chrisbiscardi</span>
+          <span>@zhentiw</span>
         </div>
       </div>
     </div>
