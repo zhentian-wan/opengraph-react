@@ -1,6 +1,6 @@
 const playwright = require("playwright-aws-lambda");
 const fs = require("fs");
-
+// .netlify/functions/gen-opengraph-image?title=Angular%20in%20deep&tags=angular,aws&author=@Zhentiw
 exports.handler = async function (event, ctx) {
   const script = fs.readFileSync(require.resolve("./image.js"), {
     encoding: "utf-8",

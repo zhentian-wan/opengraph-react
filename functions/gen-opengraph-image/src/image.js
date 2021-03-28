@@ -49,7 +49,7 @@ function App() {
           css={{
             color: "#E9F5FB",
             height: "100%",
-            textAlign: "center",
+            textAlign: "left",
           }}
         >
           <Textfit
@@ -58,6 +58,7 @@ function App() {
             style={{
               minHeight: "80%",
               maxHeight: "80%",
+              maxWidth: "65%",
               lineHeight: 1,
             }}
           >
@@ -86,11 +87,9 @@ function App() {
               },
             }}
           >
-            {
-              window.tags.map(tag => (
-                <li key={tag}>{tag}</li>
-              ))
-            }
+            {window.tags.map((tag) => (
+              <li key={tag}>{tag}</li>
+            ))}
           </ul>
           <span>{window.author}</span>
         </div>
