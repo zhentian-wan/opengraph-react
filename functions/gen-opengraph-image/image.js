@@ -3405,7 +3405,7 @@
         maxHeight: "80%",
         lineHeight: 1
       }
-    }, "Some stuff")), jsx("div", {
+    }, window.title)), jsx("div", {
       css: {
         color: "white",
         display: "flex",
@@ -3425,7 +3425,11 @@
           }
         }
       }
-    }, jsx("li", null, "react"), jsx("li", null, "serverless"), jsx("li", null, "figma")), jsx("span", null, "@zhentiw"))));
+    }, window.tags.map(function (tag) {
+      return jsx("li", {
+        key: tag
+      }, tag);
+    })), jsx("span", null, window.author))));
   }
 
   reactDom_6(jsx(App, null), document.getElementById("corgi"));

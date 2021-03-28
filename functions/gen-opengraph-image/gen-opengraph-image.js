@@ -1,7 +1,7 @@
 const playwright = require("playwright-aws-lambda");
 const fs = require("fs");
-const script = fs.readFileSync("./image.js", "utf-8");
-
+const script = fs.readFileSync("./image.js", {encoding: 'utf-8'});
+console.log(script)
 exports.handler = async function (event, ctx) {
   const browser = await playwright.launchChromium();
   const context = await browser._defaultContext;

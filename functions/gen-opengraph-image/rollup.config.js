@@ -12,28 +12,28 @@ const config = {
   output: [
     {
       file: `image.js`,
-      format: "iife",
-    },
+      format: "iife"
+    }
   ],
   plugins: [
     resolve({
-      preferBuiltins: true,
+      preferBuiltins: true
     }),
     babel({
-      exclude: "node_modules/**",
+      exclude: "node_modules/**"
     }),
     commonjs({
       namedExports: {
         "react-dom": Object.keys(ReactDOM),
-        react: Object.keys(React),
-      },
+        react: Object.keys(React)
+      }
     }),
     replace({
-      "process.env.NODE_ENV": JSON.stringify("production"),
+      "process.env.NODE_ENV": JSON.stringify("production")
     }),
     globals(),
-    builtins(),
-  ],
+    builtins()
+  ]
 };
 
 export default config;
