@@ -1,15 +1,14 @@
 const playwright = require("playwright-aws-lambda");
 const fs = require("fs");
-const script = fs.readFileSync("./image.js", {encoding: 'utf-8'});
-console.log(script)
+const script = fs.readFileSync("./image.js", { encoding: "utf-8" });
 exports.handler = async function (event, ctx) {
   const browser = await playwright.launchChromium();
   const context = await browser._defaultContext;
   const page = await context.newPage();
   page.setViewportSize({
     width: 1920,
-    height: 1080
-  })
+    height: 1080,
+  });
   await page.setContent(`<!DOCTYPE html>
   <html>
     <head>
@@ -21,6 +20,17 @@ exports.handler = async function (event, ctx) {
     </body>
   </html>
   `);
+  const { queryStringParameters } = event;
+  const tags = queryStringParameters.tags
+    ? decodeURIComponent(queryStringParameters.tags).split(",")
+    : [];
+  await page.addScriptTag({
+    content: `
+  window.title = "${queryStringParameters.title || "No Title"}";
+  window.tags = ${JSON.stringify(tags)};
+  window.author = "${queryStringParameters.author || ""}";
+  `,
+  });
   await page.addScriptTag({ content: script });
   const boundingRect = await page.evaluate(() => {
     const corgi = document.getElementById("corgi");
